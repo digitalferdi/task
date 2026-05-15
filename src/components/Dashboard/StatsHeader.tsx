@@ -10,7 +10,6 @@ interface StatsHeaderProps {
 }
 
 export default function StatsHeader({ xp, level, streak }: StatsHeaderProps) {
-  const xpToNextLevel = level * 100;
   const progress = (xp % 100);
 
   return (

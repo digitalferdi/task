@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import { Target, TrendingUp, Award } from 'lucide-react';
+import { Target, Award } from 'lucide-react';
 
 interface DailyEvaluationProps {
-  tasks: any[];
+  tasks: unknown[];
 }
 
 export default function DailyEvaluation({ tasks }: DailyEvaluationProps) {

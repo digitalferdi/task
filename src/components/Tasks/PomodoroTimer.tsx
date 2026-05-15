@@ -10,7 +10,7 @@ export default function PomodoroTimer() {
   const [mode, setMode] = useState('focus'); // focus or break
 
   useEffect(() => {
-    let interval: any = null;
+    let interval: ReturnType<typeof setInterval> | null = null;
     if (isActive) {
       interval = setInterval(() => {
         if (seconds > 0) {
