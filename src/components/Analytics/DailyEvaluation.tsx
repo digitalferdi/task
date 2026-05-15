@@ -3,8 +3,13 @@
 import React from 'react';
 import { Target, Award } from 'lucide-react';
 
+interface TaskItem {
+  status: string;
+  [key: string]: unknown;
+}
+
 interface DailyEvaluationProps {
-  tasks: unknown[];
+  tasks: TaskItem[];
 }
 
 export default function DailyEvaluation({ tasks }: DailyEvaluationProps) {
