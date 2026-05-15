@@ -11,10 +11,17 @@ const MOODS = [
   { label: 'Awful', icon: Trash2, color: '#ef4444' },
 ];
 
+interface JournalEntry {
+  id: string;
+  mood: string;
+  reflection: string;
+  date: string;
+}
+
 export default function Journal() {
-  const [selectedMood, setSelectedMood] = useState(null);
+  const [selectedMood, setSelectedMood] = useState<string | null>(null);
   const [reflection, setReflection] = useState('');
-  const [entries, setEntries] = useState([]); // In a real app, fetch these
+  const [entries, setEntries] = useState<JournalEntry[]>([]); // In a real app, fetch these
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

@@ -5,12 +5,13 @@ import UserProgress from '@/models/UserProgress';
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     await dbConnect();
     const body = await request.json();
-    const task = await Task.findByIdAndUpdate(params.id, body, { new: true });
+    const task = await Task.findByIdAndUpdate(id, body, { new: true });
 
     if (body.status === 'Completed' && task) {
       // Update User Progress
@@ -32,11 +33,12 @@ export async function PATCH(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     await dbConnect();
-    await Task.findByIdAndDelete(params.id);
+    await Task.findByIdAndDelete(id);
     return NextResponse.json({ success: true });
   } catch (error) {
     return NextResponse.json({ success: false, error: (error as Error).message }, { status: 500 });
