@@ -8,8 +8,40 @@ import SessionProvider from '@/components/Providers/SessionProvider';
 import Navbar from '@/components/Navigation/Navbar';
 
 export const metadata: Metadata = {
-  title: "VIBE Task | Premium Gamified Productivity",
-  description: "Manage your tasks, track your mood, and level up your life with VIBE.",
+  title: {
+    default: "VIBE Task | Premium Gamified Productivity",
+    template: "%s | VIBE Task"
+  },
+  description: "Level up your life with VIBE. The premium, gamified task manager that tracks your productivity, mood, and achievements.",
+  keywords: ["productivity", "task manager", "gamification", "AI coach", "mood tracker", "VIBE task"],
+  authors: [{ name: "VIBE Team" }],
+  creator: "VIBE Team",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://task-d5ie.vercel.app/",
+    siteName: "VIBE Task",
+    title: "VIBE Task | Premium Gamified Productivity",
+    description: "Manage tasks, track mood, and level up your life with AI-powered insights.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "VIBE Task Dashboard Preview",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "VIBE Task | Gamified Productivity",
+    description: "Level up your productivity with VIBE Task Manager.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
