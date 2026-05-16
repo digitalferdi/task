@@ -103,11 +103,11 @@ export default function AICoach() {
       <div style={{ marginTop: '24px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
         <div className="glass-card" style={{ padding: '16px', fontSize: '0.875rem', cursor: 'pointer' }} onClick={() => setInput("How can I improve my focus today?")}>
           <Sparkles size={16} style={{ color: 'var(--warning)', marginBottom: '8px' }} />
-          <p>"How can I improve my focus today?"</p>
+          <p>&quot;How can I improve my focus today?&quot;</p>
         </div>
         <div className="glass-card" style={{ padding: '16px', fontSize: '0.875rem', cursor: 'pointer' }} onClick={() => setInput("Suggest a schedule for my tasks.")}>
           <Sparkles size={16} style={{ color: 'var(--accent)', marginBottom: '8px' }} />
-          <p>"Suggest a schedule for my tasks."</p>
+          <p>&quot;Suggest a schedule for my tasks.&quot;</p>
         </div>
       </div>
     </div>

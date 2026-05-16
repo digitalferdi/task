@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useSession, signOut } from 'next-auth/react';
 
 export default function Navbar() {
@@ -33,10 +34,13 @@ export default function Navbar() {
         {status === 'authenticated' ? (
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginLeft: '1rem', borderLeft: '1px solid rgba(255,255,255,0.1)', paddingLeft: '1rem' }}>
             {session.user?.image && (
-              <img 
+              <Image 
                 src={session.user.image} 
                 alt={session.user.name || 'User'} 
-                style={{ width: '32px', height: '32px', borderRadius: '50%' }}
+                width={32}
+                height={32}
+                style={{ borderRadius: '50%' }}
+                unoptimized
               />
             )}
             <span style={{ fontSize: '0.9rem', color: '#ccc' }}>{session.user?.name}</span>
