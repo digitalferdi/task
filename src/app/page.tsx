@@ -104,7 +104,7 @@ export default function Dashboard() {
       <div style={{ gridColumn: 'span 8' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
           <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Clock size={20} className="gradient-text" /> Today's Tasks
+            <Clock size={20} className="gradient-text" /> Today&apos;s Tasks
           </h3>
           <button 
             className="btn-primary" 
@@ -180,7 +180,7 @@ export default function Dashboard() {
             <BrainCircuit size={20} style={{ color: 'var(--primary)' }} /> AI Coach
           </h3>
           <p style={{ fontSize: '0.875rem', opacity: 0.8, lineHeight: 1.5, marginBottom: '16px' }}>
-            "You've completed 3 tasks today! Keep it up to maintain your 5-day streak. Focus on your Education task next for a big XP boost."
+            &quot;You&apos;ve completed 3 tasks today! Keep it up to maintain your 5-day streak. Focus on your Education task next for a big XP boost.&quot;
           </p>
           <button style={{ 
             width: '100%', 
