@@ -1,15 +1,21 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import UserProgress from '@/models/UserProgress';
+import { auth } from '@/auth';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
+    const session = await auth();
+    if (!session?.user?.id) {
+      return NextResponse.json({ success: false, error: 'Unauthorized' }, { status: 401 });
+    }
+
     await dbConnect();
-    let progress = await UserProgress.findOne({ userId: 'default-user' });
+    let progress = await UserProgress.findOne({ userId: session.user.id });
     if (!progress) {
-      progress = await UserProgress.create({ userId: 'default-user' });
+      progress = await UserProgress.create({ userId: session.user.id });
     }
     
     // Level calculation logic: Level = floor(XP / 100) + 1

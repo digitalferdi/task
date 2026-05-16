@@ -1,7 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 export interface IMoodEntry extends Document {
-  userId: string;
+  userId: mongoose.Types.ObjectId;
   mood: 'Excellent' | 'Good' | 'Neutral' | 'Bad' | 'Awful';
   reflection: string;
   date: Date;
@@ -9,7 +9,7 @@ export interface IMoodEntry extends Document {
 
 const MoodEntrySchema: Schema = new Schema(
   {
-    userId: { type: String, required: true, default: 'default-user' },
+    userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     mood: {
       type: String,
       enum: ['Excellent', 'Good', 'Neutral', 'Bad', 'Awful'],

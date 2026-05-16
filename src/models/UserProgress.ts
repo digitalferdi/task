@@ -1,7 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 export interface IUserProgress extends Document {
-  userId: string; // Placeholder for now, can be 'default' or real ID
+  userId: mongoose.Types.ObjectId;
   xp: number;
   level: number;
   streak: number;
@@ -12,7 +12,7 @@ export interface IUserProgress extends Document {
 
 const UserProgressSchema: Schema = new Schema(
   {
-    userId: { type: String, required: true, unique: true, default: 'default-user' },
+    userId: { type: Schema.Types.ObjectId, ref: 'User', required: true, unique: true },
     xp: { type: Number, default: 0 },
     level: { type: Number, default: 1 },
     streak: { type: Number, default: 0 },

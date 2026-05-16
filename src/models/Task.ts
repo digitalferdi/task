@@ -1,6 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 export interface ITask extends Document {
+  userId: mongoose.Types.ObjectId;
   title: string;
   description?: string;
   category: 'Work' | 'Personal' | 'Health' | 'Education' | 'Other';
@@ -15,6 +16,7 @@ export interface ITask extends Document {
 
 const TaskSchema: Schema = new Schema(
   {
+    userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     title: { type: String, required: true },
     description: { type: String },
     category: {
