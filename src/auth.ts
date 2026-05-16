@@ -1,16 +1,14 @@
 import NextAuth from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
 import dbConnect from './lib/mongodb';
 import User from './models/User';
+import { authConfig } from './auth.config';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  ...authConfig,
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    }),
+    ...authConfig.providers,
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
@@ -48,13 +46,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     })
   ],
   callbacks: {
-    async signIn({ user, account, profile }) {
+    ...authConfig.callbacks,
+    async signIn({ user, account }) {
       if (account?.provider === 'google') {
         await dbConnect();
         const existingUser = await User.findOne({ email: user.email });
         
         if (!existingUser) {
-          // Auto-register Google users
           await User.create({
             name: user.name,
             email: user.email,
@@ -67,9 +65,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     },
     async jwt({ token, user, account }) {
       if (user) {
-        // When first signed in
         token.id = user.id;
-        // If Google user, fetch their ID from DB to ensure it matches
         if (account?.provider === 'google') {
           await dbConnect();
           const dbUser = await User.findOne({ email: user.email });
@@ -86,9 +82,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
       return session;
     }
-  },
-  pages: {
-    signIn: '/login',
   },
   session: {
     strategy: 'jwt',
