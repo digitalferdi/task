@@ -26,9 +26,9 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "VIBE Task Dashboard Preview",
+        width: 1024,
+        height: 1024,
+        alt: "VIBE Task Official Logo",
       },
     ],
   },
@@ -37,6 +37,10 @@ export const metadata: Metadata = {
     title: "VIBE Task | Gamified Productivity",
     description: "Level up your productivity with VIBE Task Manager.",
     images: ["/og-image.png"],
+  },
+  icons: {
+    icon: "/favicon.png",
+    apple: "/favicon.png",
   },
   robots: {
     index: true,
