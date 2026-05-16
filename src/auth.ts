@@ -48,20 +48,25 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   callbacks: {
     ...authConfig.callbacks,
     async signIn({ user, account }) {
-      if (account?.provider === 'google') {
-        await dbConnect();
-        const existingUser = await User.findOne({ email: user.email });
-        
-        if (!existingUser) {
-          await User.create({
-            name: user.name,
-            email: user.email,
-            image: user.image,
-            authProvider: 'google',
-          });
+      try {
+        if (account?.provider === 'google') {
+          await dbConnect();
+          const existingUser = await User.findOne({ email: user.email });
+          
+          if (!existingUser) {
+            await User.create({
+              name: user.name,
+              email: user.email,
+              image: user.image,
+              authProvider: 'google',
+            });
+          }
         }
+        return true;
+      } catch (error) {
+        console.error("Sign-in error:", error);
+        return false; // Return false to indicate sign-in failure
       }
-      return true;
     },
     async jwt({ token, user, account }) {
       if (user) {
