@@ -31,5 +31,8 @@
   "overrides": {
     "react": "$react",
     "react-dom": "$react-dom"
+  },
+  "engines": {
+    "node": "20.x"
   }
 }
