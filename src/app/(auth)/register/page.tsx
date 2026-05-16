@@ -39,89 +39,96 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4">
-      <div className="max-w-md w-full space-y-8 bg-gray-800/50 p-8 rounded-2xl border border-gray-700/50 backdrop-blur-xl shadow-2xl">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
-            Create an account
-          </h2>
-          <p className="mt-2 text-center text-sm text-gray-400">
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 20px' }}>
+      <div className="glass-card animate-fade-in" style={{ maxWidth: '400px', width: '100%', padding: '40px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+          <h2 style={{ fontSize: '2rem', marginBottom: '8px' }}>Create an account</h2>
+          <p style={{ fontSize: '0.875rem', opacity: 0.6 }}>
             Join the VIBE and transform your productivity
           </p>
         </div>
 
         {error && (
-          <div className="bg-red-500/10 border border-red-500/50 text-red-500 rounded-lg p-3 text-sm text-center">
+          <div style={{ 
+            background: 'rgba(239, 68, 68, 0.1)', 
+            border: '1px solid var(--error)', 
+            color: 'var(--error)', 
+            padding: '12px', 
+            borderRadius: '12px',
+            fontSize: '0.875rem',
+            textAlign: 'center',
+            marginBottom: '24px'
+          }}>
             {error}
           </div>
         )}
 
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="space-y-4 rounded-md shadow-sm">
-            <div>
-              <label htmlFor="name" className="sr-only">
-                Full Name
-              </label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                required
-                className="appearance-none rounded-xl relative block w-full px-4 py-3 border border-gray-600 bg-gray-700/50 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent sm:text-sm transition-all"
-                placeholder="Full Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="email-address" className="sr-only">
-                Email address
-              </label>
-              <input
-                id="email-address"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                className="appearance-none rounded-xl relative block w-full px-4 py-3 border border-gray-600 bg-gray-700/50 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent sm:text-sm transition-all"
-                placeholder="Email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="new-password"
-                required
-                minLength={6}
-                className="appearance-none rounded-xl relative block w-full px-4 py-3 border border-gray-600 bg-gray-700/50 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent sm:text-sm transition-all"
-                placeholder="Password (min. 6 characters)"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <input
+              type="text"
+              required
+              placeholder="Full Name"
+              style={{ 
+                width: '100%', 
+                padding: '12px 16px', 
+                borderRadius: '12px', 
+                border: '1px solid var(--card-border)', 
+                background: 'rgba(255,255,255,0.03)', 
+                color: 'white',
+                outline: 'none'
+              }}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <input
+              type="email"
+              required
+              placeholder="Email address"
+              style={{ 
+                width: '100%', 
+                padding: '12px 16px', 
+                borderRadius: '12px', 
+                border: '1px solid var(--card-border)', 
+                background: 'rgba(255,255,255,0.03)', 
+                color: 'white',
+                outline: 'none'
+              }}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              required
+              minLength={6}
+              placeholder="Password (min. 6 characters)"
+              style={{ 
+                width: '100%', 
+                padding: '12px 16px', 
+                borderRadius: '12px', 
+                border: '1px solid var(--card-border)', 
+                background: 'rgba(255,255,255,0.03)', 
+                color: 'white',
+                outline: 'none'
+              }}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
 
-          <div>
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-xl text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 focus:ring-offset-gray-900 transition-all disabled:opacity-50"
-            >
-              {isLoading ? 'Creating account...' : 'Create account'}
-            </button>
-          </div>
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="btn-primary"
+            style={{ width: '100%', justifyContent: 'center' }}
+          >
+            {isLoading ? 'Creating account...' : 'Create account'}
+          </button>
         </form>
 
-        <p className="mt-8 text-center text-sm text-gray-400">
+        <p style={{ textAlign: 'center', marginTop: '32px', fontSize: '0.875rem', opacity: 0.6 }}>
           Already have an account?{' '}
-          <Link href="/login" className="font-medium text-indigo-400 hover:text-indigo-300 transition-colors">
+          <Link href="/login" className="gradient-text" style={{ fontWeight: 600, textDecoration: 'none' }}>
             Sign in
           </Link>
         </p>
